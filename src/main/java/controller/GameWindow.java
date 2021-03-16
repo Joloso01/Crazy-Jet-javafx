@@ -1,4 +1,4 @@
-package fxml;
+package controller;
 
 public class GameWindow {
 }
