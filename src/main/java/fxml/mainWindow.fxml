@@ -1,13 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindow">
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindow">
    <children>
-      <Label layoutX="282.0" layoutY="83.0" text="Crazy Jet" />
-      <Button layoutX="274.0" layoutY="232.0" mnemonicParsing="false" text="Jugar" />
-      <Button layoutX="247.0" layoutY="273.0" mnemonicParsing="false" text="Puntuaciones" />
-      <Button layoutX="269.0" layoutY="310.0" mnemonicParsing="false" text="Salir" />
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="358.0" prefWidth="600.0">
+         <children>
+            <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/fondo_Intro.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="247.0" layoutY="40.0" text="Crazy Jet" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Bitstream Vera Serif Bold" size="21.0" />
+               </font>
+            </Label>
+            <Button layoutX="267.0" layoutY="232.0" mnemonicParsing="false" text="Jugar" />
+            <Button layoutX="240.0" layoutY="271.0" mnemonicParsing="false" text="Puntuaciones" />
+            <Button layoutX="270.0" layoutY="309.0" mnemonicParsing="false" text="Salir" />
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>
