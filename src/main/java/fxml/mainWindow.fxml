@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindow">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindow">
    <children>
       <MenuBar>
         <menus>
@@ -41,9 +38,9 @@
                   <Font name="Bitstream Vera Serif Bold" size="21.0" />
                </font>
             </Label>
-            <Button layoutX="267.0" layoutY="232.0" mnemonicParsing="false" text="Jugar" />
-            <Button layoutX="240.0" layoutY="271.0" mnemonicParsing="false" text="Puntuaciones" />
-            <Button layoutX="270.0" layoutY="309.0" mnemonicParsing="false" text="Salir" />
+            <Button fx:id="btnjugar" layoutX="267.0" layoutY="232.0" mnemonicParsing="false" onAction="#jugar" text="Jugar" />
+            <Button fx:id="btnScore" layoutX="240.0" layoutY="271.0" mnemonicParsing="false" onAction="#showScore" text="Puntuaciones" />
+            <Button fx:id="exit" layoutX="270.0" layoutY="309.0" mnemonicParsing="false" onAction="#exitGame" text="Salir" />
          </children>
       </AnchorPane>
    </children>
