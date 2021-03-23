@@ -1,0 +1,9 @@
+.button {
+
+    -fx-border-color: #87cefa;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #6495ed;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #ffffff;
+}
