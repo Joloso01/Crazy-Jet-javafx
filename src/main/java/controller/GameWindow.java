@@ -1,10 +1,14 @@
 package controller;
 
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class GameWindow {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class GameWindow implements Initializable {
 
     private static final int height = 800;
     private static final int width = 500;
@@ -19,4 +23,8 @@ public class GameWindow {
         stage.setScene(scene);
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
