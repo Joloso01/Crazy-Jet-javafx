@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindow">
+<VBox fx:id="vbox1" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindow">
    <children>
       <MenuBar>
         <menus>
@@ -27,7 +26,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane prefHeight="358.0" prefWidth="600.0">
+      <AnchorPane fx:id="pane1" prefHeight="358.0" prefWidth="600.0">
          <children>
             <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
                <image>
