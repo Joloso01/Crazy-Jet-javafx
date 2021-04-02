@@ -11,9 +11,9 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-//        MainWindow mainWindow = loader.getController();
-//        mainWindow.setStage(primaryStage);
-//        mainWindow.setScene(scene);
+        MainWindow mainWindow = loader.getController();
+        mainWindow.setStage(primaryStage);
+        mainWindow.setScene(scene);
 
         primaryStage.setTitle("Crazy jet");
         primaryStage.setScene(scene);

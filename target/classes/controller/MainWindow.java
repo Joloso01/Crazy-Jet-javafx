@@ -35,13 +35,13 @@ public class MainWindow implements Initializable {
         this.scene = scene;
     }
 
-    public void jugar() throws IOException {
+    public void jugar() {
         vbox1.getChildren().remove(pane1);
         try{
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
-            AnchorPane ancho = loader.load();
-            pane1.getChildren().add(ancho);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectJet.fxml"));
+            AnchorPane selectPane = loader.load();
+            vbox1.getChildren().add(selectPane);
 
 //            GameWindow game = loader.getController();
 //            game.setScene()
@@ -63,4 +63,9 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    public void menuItemCloseAction(ActionEvent actionEvent) {
+        stage.close();
+    }
+
 }

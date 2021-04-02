@@ -4,14 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,16 +33,13 @@ public class MainWindow implements Initializable {
         this.scene = scene;
     }
 
-    public void jugar() throws IOException {
+    public void jugar() {
         vbox1.getChildren().remove(pane1);
         try{
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
-            AnchorPane ancho = loader.load();
-            pane1.getChildren().add(ancho);
-
-//            GameWindow game = loader.getController();
-//            game.setScene()
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectJet.fxml"));
+            AnchorPane selectPane = loader.load();
+            vbox1.getChildren().add(selectPane);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -61,6 +56,10 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
+
+    public void menuItemCloseAction(ActionEvent actionEvent) {
+        stage.close();
+    }
+
 }
