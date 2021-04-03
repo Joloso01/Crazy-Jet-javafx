@@ -13,7 +13,7 @@
          <children>
             <VBox fx:id="jet1" onMouseClicked="#jet1Selected" prefHeight="400.0" prefWidth="320.0">
                <children>
-                  <ImageView fitHeight="256.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jet1Image" fitHeight="256.0" fitWidth="308.0" pickOnBounds="true" preserveRatio="true">
                      <Image url="@sprites/jets/BF-109E/Type-3/Type2_2.png" />
                   </ImageView>
                   <Label prefHeight="17.0" prefWidth="157.0" text="BF-109E" textAlignment="CENTER" />
@@ -21,7 +21,7 @@
             </VBox>
             <VBox fx:id="jet2" onMouseClicked="#jet2Selected" prefHeight="400.0" prefWidth="304.0">
                <children>
-                  <ImageView fitHeight="256.0" fitWidth="288.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="jet2Image" fitHeight="256.0" fitWidth="288.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@sprites/jets/Hawker_Tempest_MKII/Type_1/Hawker_type1.png" />
                      </image>

@@ -2,6 +2,9 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -9,10 +12,14 @@ import java.io.IOException;
 
 public class SelectJetWindow {
 
-    public static String spriteSelec;
+    public static Image spriteSelec;
+    private Scene scene;
 
     @FXML
     private AnchorPane selectPane;
+
+    @FXML
+    ImageView jet1Image, jet2Image;
 
     public void jet2Selected(MouseEvent mouseEvent) throws IOException {
 
@@ -20,7 +27,7 @@ public class SelectJetWindow {
         AnchorPane ancho = loader.load();
         selectPane.getChildren().remove(0);
         selectPane.getChildren().add(ancho);
-        spriteSelec = "@sprites/jets/Hawker_Tempest_MKII/Type_1/Hawker_type1.png";
+        spriteSelec = jet2Image.getImage();
     }
 
     public void jet1Selected(MouseEvent mouseEvent) throws IOException {
@@ -28,6 +35,10 @@ public class SelectJetWindow {
         AnchorPane ancho = loader.load();
         selectPane.getChildren().remove(0);
         selectPane.getChildren().add(ancho);
-        spriteSelec="@sprites/jets/BF-109E/Type-3/Type2_2.png";
+        spriteSelec= jet1Image.getImage();
+    }
+
+    public void setScene(Scene sc){
+        scene = sc;
     }
 }

@@ -38,6 +38,7 @@ public class MainWindow implements Initializable {
         try{
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectJet.fxml"));
+            SelectJetWindow selectJetWindow = loader.getController();
             AnchorPane selectPane = loader.load();
             vbox1.getChildren().add(selectPane);
 
