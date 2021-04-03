@@ -20,7 +20,7 @@ public class GameWindow implements Initializable {
     private Scene scene;
 
     @FXML
-    ImageView background0;
+    ImageView background;
 
     public GameWindow(){
         pane = new AnchorPane();
@@ -31,6 +31,6 @@ public class GameWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        background0.setImage(new Image("/fxml/images/mar.gif"));
+        background.setImage(new Image("/fxml/images/mar.gif"));
     }
 }

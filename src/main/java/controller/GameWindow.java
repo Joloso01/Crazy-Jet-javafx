@@ -18,9 +18,10 @@ public class GameWindow implements Initializable {
     private AnchorPane pane;
     private Stage stage;
     private Scene scene;
+    private Enemigo enemigo;
 
     @FXML
-    ImageView background0;
+    ImageView background;
 
     public GameWindow(){
         pane = new AnchorPane();
@@ -31,6 +32,7 @@ public class GameWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        background0.setImage(new Image("/fxml/images/mar.gif"));
+        enemigo = new Enemigo(new Image("/fxml/sprites.jets/JU-87B2/Type_1/JU87B2-progress_4.png"));
+        background.setImage(new Image("/fxml/images/mar.gif"));
     }
 }
