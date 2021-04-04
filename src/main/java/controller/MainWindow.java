@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,6 +40,8 @@ public class MainWindow implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
             AnchorPane ancho = loader.load();
+            GameWindow gameWindow = loader.getController();
+            gameWindow.setScene(scene);
             vbox1.getChildren().add(ancho);
 
         }catch (Exception e){
@@ -62,10 +63,6 @@ public class MainWindow implements Initializable {
 
     public void menuItemCloseAction(ActionEvent actionEvent) {
         stage.close();
-    }
-
-    public void MovimientoJugador(Scene scene) throws IOException {
-
     }
 
 }

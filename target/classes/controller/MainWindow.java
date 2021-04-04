@@ -31,16 +31,18 @@ public class MainWindow implements Initializable {
 
     public void setScene(Scene scene) {
         this.scene = scene;
+
     }
 
     public void jugar() {
         vbox1.getChildren().remove(pane1);
         try{
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectJet.fxml"));
-            SelectJetWindow selectJetWindow = loader.getController();
-            AnchorPane selectPane = loader.load();
-            vbox1.getChildren().add(selectPane);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
+            AnchorPane ancho = loader.load();
+            GameWindow gameWindow = loader.getController();
+            gameWindow.setScene(scene);
+            vbox1.getChildren().add(ancho);
 
         }catch (Exception e){
             e.printStackTrace();

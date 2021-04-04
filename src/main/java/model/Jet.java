@@ -17,6 +17,12 @@ public class Jet extends Sprite {
             case "LEFT":
                 setX(getPosX() - 4);
                 break;
+            case "UP":
+                setY(getPosY()-4);
+                break;
+            case "DOWN":
+                setY(getPosY()+4);
+                break;
         }
     }
 
