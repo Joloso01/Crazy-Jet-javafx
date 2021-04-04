@@ -7,21 +7,17 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import model.EnemyJet;
+import model.Jet;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GameWindow implements Initializable {
 
-    private static final int height = 800;
-    private static final int width = 500;
-    private AnchorPane pane;
     private GraphicsContext gc;
-    private Stage stage;
     private Scene scene;
-    private Enemigo enemigo;
+    private EnemyJet enemigo;
     private Jet jetPlayer;
 
     @FXML
@@ -44,18 +40,18 @@ public class GameWindow implements Initializable {
 //    })
 //    );
 
-    public GameWindow(){
-        pane = new AnchorPane();
-        scene = new Scene(pane, height, width);
-        stage = new Stage();
-        stage.setScene(scene);
-    }
+//    public GameWindow(){
+//        pane = new AnchorPane();
+//        scene = new Scene(pane, height, width);
+//        stage = new Stage();
+//        stage.setScene(scene);
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         background.setImage(new Image("fxml/images/mar.gif"));
         jetPlayer = new Jet(new Image("fxml/sprites/jets/BF-109E/Type-3/Type2_2.png"));
-        enemigo = new Enemigo(new Image("fxml/sprites/jets/JU-87B2/Type_1/JU87B2 -progress_4.png"));
+        enemigo = new EnemyJet(new Image("fxml/sprites/jets/JU-87B2/Type_1/JU87B2 -progress_4.png"));
         gc = playerJet.getGraphicsContext2D();
         jetPlayer.render(gc);
 
@@ -65,6 +61,7 @@ public class GameWindow implements Initializable {
 
     public void setScene(Scene sc) {
         scene = sc;
+        System.out.println("me muevo papi");
         scene.setOnKeyPressed(keyEvent -> {
             jetPlayer.clear(gc);
             jetPlayer.move(keyEvent.getCode().toString());

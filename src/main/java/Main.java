@@ -1,8 +1,10 @@
+import controller.GameWindow;
 import controller.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -14,10 +16,19 @@ public class Main extends Application {
         MainWindow mainWindow = loader.getController();
         mainWindow.setStage(primaryStage);
         mainWindow.setScene(scene);
+        mainWindow.MovimientoJugador(scene);
+
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
+        AnchorPane ancho = loader2.load();
+        GameWindow gameWindow = loader2.getController();
+        gameWindow.setScene(scene);
 
         primaryStage.setTitle("Crazy jet");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
+
 
     }
 

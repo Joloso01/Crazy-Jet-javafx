@@ -1,11 +1,11 @@
-package controller;
+package model;
 
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class Sprites {
+public abstract class Sprite {
     private Image image;
     private double width, height, posX, posY;
 
@@ -17,7 +17,7 @@ public class Sprites {
         return;
     }
 
-    public Sprites(Image image) {
+    public Sprite(Image image) {
         setImage(image);
     }
 
@@ -39,6 +39,7 @@ public class Sprites {
     public double getHeight() {
         return height;
     }
+
     private void setImage(Image image) {
         this.image = image;
         width = image.getWidth();
@@ -57,4 +58,8 @@ public class Sprites {
         return new Rectangle2D(posX,posY,width,height);
     }
 
+    public boolean isClicked(Point2D p) {
+        if(getBoundary().contains(p)) return true;
+        else return false;
+    }
 }

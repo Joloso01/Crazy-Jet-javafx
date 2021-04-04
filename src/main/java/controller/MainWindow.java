@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,16 +32,16 @@ public class MainWindow implements Initializable {
 
     public void setScene(Scene scene) {
         this.scene = scene;
+
     }
 
     public void jugar() {
         vbox1.getChildren().remove(pane1);
         try{
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/selectJet.fxml"));
-            SelectJetWindow selectJetWindow = loader.getController();
-            AnchorPane selectPane = loader.load();
-            vbox1.getChildren().add(selectPane);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
+            AnchorPane ancho = loader.load();
+            vbox1.getChildren().add(ancho);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -61,6 +62,10 @@ public class MainWindow implements Initializable {
 
     public void menuItemCloseAction(ActionEvent actionEvent) {
         stage.close();
+    }
+
+    public void MovimientoJugador(Scene scene) throws IOException {
+
     }
 
 }
