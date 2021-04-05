@@ -12,7 +12,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,12 +19,10 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
-    Media media;
-    MediaPlayer mediaPlayer;
 
-    private String s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
-    private Media sound = new Media(s);
-    private MediaPlayer audioClip = new MediaPlayer(sound);
+    private final String s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
+    private final Media sound = new Media(s);
+    private final MediaPlayer audioClip = new MediaPlayer(sound);
 
 
     @FXML
@@ -55,6 +52,7 @@ public class MainWindow implements Initializable {
             gameWindow.setStage(stage);
             gameWindow.cambiarDimension();
             vbox1.getChildren().add(ancho);
+            audioClip.play();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -75,13 +73,19 @@ public class MainWindow implements Initializable {
 //        media = new Media(new File(cancion).toURI().toString());
 //        mediaPlayer = new MediaPlayer(media);
 //        mediaPlayer.setAutoPlay(true);
-//        mediaPlayer.setVolume(0.1);
+        audioClip.setVolume(0.1);
         audioClip.setCycleCount(MediaPlayer.INDEFINITE);
-        audioClip.play();
+
     }
 
     public void menuItemCloseAction(ActionEvent actionEvent) {
         stage.close();
+    }
+
+    public void paraMusica(){
+        audioClip.stop();
+        audioClip.pause();
+        audioClip.setVolume(0.0);
     }
 
 }

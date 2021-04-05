@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -60,6 +61,16 @@ public class GameWindow implements Initializable {
                     if (jetPlayer.comprobarVida() !=0){
                         jetPlayer.golpeado();
                     }else {
+                        FXMLLoader loader2=new FXMLLoader(getClass().getResource("/fxml/mainWindow.fxml"));
+                        try {
+                            Parent parent = loader2.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        MainWindow mainWindow = loader2.getController();
+                        mainWindow.paraMusica();
+
+
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameOverWindow.fxml"));
                         AnchorPane gameOverPane = null;
                         try {
