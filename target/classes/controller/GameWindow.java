@@ -87,7 +87,7 @@ public class GameWindow implements Initializable {
                 background.setLayoutY(-background.getImage().getHeight()+640);
             }
             System.out.println("y: "+background.getLayoutY());
-            if (temporizadorAumento==10000){
+            if (temporizadorAumento==5000){
                 for (int i = 0; i < 10; i++) {
                     listaEnemigos.add(new EnemyJet());
                 }
