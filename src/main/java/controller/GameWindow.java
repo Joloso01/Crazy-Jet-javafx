@@ -72,7 +72,7 @@ public class GameWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        background.setImage(new Image("fxml/images/mar.gif"));
+        background.setImage(new Image("fxml/images/mapa.png"));
         jetPlayer = new Jet(new Image("fxml/sprites/jets/playerJet_recto.png"));
         enemigo = new EnemyJet(new Image("fxml/sprites/jets/enemigo1.png"));
         gc = playerJet.getGraphicsContext2D();
