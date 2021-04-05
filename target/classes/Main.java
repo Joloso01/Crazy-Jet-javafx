@@ -15,6 +15,8 @@ public class Main extends Application {
         mainWindow.setStage(primaryStage);
         mainWindow.setScene(scene);
 
+        primaryStage.setResizable(true);
+
         primaryStage.setTitle("Crazy jet");
         primaryStage.setScene(scene);
         primaryStage.show();

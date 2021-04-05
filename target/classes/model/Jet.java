@@ -1,6 +1,5 @@
 package model;
 
-
 import javafx.scene.image.Image;
 
 public class Jet extends Sprite {

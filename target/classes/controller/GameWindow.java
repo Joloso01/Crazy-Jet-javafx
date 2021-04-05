@@ -13,6 +13,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.EnemyJet;
 import model.Jet;
@@ -27,6 +28,7 @@ public class GameWindow implements Initializable {
     private Scene scene;
     private EnemyJet enemigo;
     private Jet jetPlayer;
+    private Stage stage;
 
     @FXML
     ImageView background;
@@ -42,6 +44,8 @@ public class GameWindow implements Initializable {
         public void handle(ActionEvent event) {
             enemigo.clear(gc);
             enemigo.move();
+            System.out.println("x: "+jetPlayer.getPosX()+" y: "+ jetPlayer.getPosY());
+            background.setLayoutY(background.getLayoutY()+0.2);
             if (jetPlayer.getBoundary().intersects(enemigo.getBoundary())) {
                 enemigo.setY(0);
                 if (jetPlayer.comprobarVida() !=0){
@@ -59,6 +63,9 @@ public class GameWindow implements Initializable {
                     anchor0.getChildren().remove(background);
                     anchor0.getChildren().remove(playerJet);
                     anchor0.getChildren().add(gameOverPane);
+                    GameOverWindow gameOverWindow = loader.getController();
+                    gameOverWindow.setStage(stage);
+                    gameOverWindow.cambiarDimensiones();
 
                 }
 
@@ -70,10 +77,14 @@ public class GameWindow implements Initializable {
     })
     );
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        background.setImage(new Image("fxml/images/mar.gif"));
+        background.setImage(new Image("fxml/images/mapa.png"));
         jetPlayer = new Jet(new Image("fxml/sprites/jets/playerJet_recto.png"));
+        jetPlayer.setX(210.0);
+        jetPlayer.setY(620.0);
+        background.setLayoutY(-background.getImage().getHeight()+640);
         enemigo = new EnemyJet(new Image("fxml/sprites/jets/enemigo1.png"));
         gc = playerJet.getGraphicsContext2D();
         jetPlayer.render(gc);
@@ -82,8 +93,14 @@ public class GameWindow implements Initializable {
         timeline.play();
     }
 
+    public void cambiarDimension(){
+        stage.setWidth(450f);
+        stage.setHeight(700f);
+    }
+
     public void setScene(Scene sc) {
         scene = sc;
+
         System.out.println("me muevo papi");
         scene.setOnKeyPressed(keyEvent -> {
             jetPlayer.clear(gc);
@@ -95,5 +112,9 @@ public class GameWindow implements Initializable {
 
     public void comenzarPartida() {
         jetPlayer.empezarPartida();
+    }
+
+    public void setStage(Stage primaryStage) {
+        stage = primaryStage;
     }
 }

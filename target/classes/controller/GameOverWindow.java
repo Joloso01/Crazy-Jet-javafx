@@ -4,16 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class GameOverWindow {
-    Scene scene;
 
     @FXML
     AnchorPane anchor0;
+    private Stage st;
 
     public void volverAjugar(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
@@ -28,7 +28,6 @@ public class GameOverWindow {
         anchor0.getChildren().add(root);
         GameWindow gameWindow = loader.getController();
         gameWindow.comenzarPartida();
-        gameWindow.setScene(scene);
     }
 
     public void volverMenu(ActionEvent actionEvent) {
@@ -41,7 +40,12 @@ public class GameOverWindow {
         }
     }
 
-    public void setScene(Scene sc){
-        scene =sc;
+    public void setStage(Stage stage) {
+        st = stage;
+    }
+
+    public void cambiarDimensiones(){
+        st.setHeight(400f);
+        st.setWidth(640f);
     }
 }

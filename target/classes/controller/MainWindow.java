@@ -42,6 +42,8 @@ public class MainWindow implements Initializable {
             AnchorPane ancho = loader.load();
             GameWindow gameWindow = loader.getController();
             gameWindow.setScene(scene);
+            gameWindow.setStage(stage);
+            gameWindow.cambiarDimension();
             vbox1.getChildren().add(ancho);
 
         }catch (Exception e){
