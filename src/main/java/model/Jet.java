@@ -17,20 +17,31 @@ public class Jet extends Sprite {
     public void move(String direction) {
         switch (direction) {
             case "RIGHT":
-                setX(getPosX() + 10);
-                setImage(new Image(spriteMovimiento_derecha));
+                if (getPosX() <420){
+                    setX(getPosX() + 10);
+                    setImage(new Image(spriteMovimiento_derecha));
+                }
+
                 break;
             case "LEFT":
-                setX(getPosX() - 10);
-                setImage(new Image(spriteMovimiento_izquierda));
+                if (getPosX() > 1){
+                    setX(getPosX() - 10);
+                    setImage(new Image(spriteMovimiento_izquierda));
+                }
+
                 break;
             case "UP":
-                setY(getPosY()-10);
-                setImage(new Image(spriteMovimiento_recto));
+                if (getPosY() > 1){
+                    setY(getPosY()-10);
+                    setImage(new Image(spriteMovimiento_recto));
+                }
+
                 break;
             case "DOWN":
-                setY(getPosY()+10);
-                setImage(new Image(spriteMovimiento_recto));
+                if (getPosY() < 700){
+                    setY(getPosY()+10);
+                    setImage(new Image(spriteMovimiento_recto));
+                }
                 break;
 
             default:

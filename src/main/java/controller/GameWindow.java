@@ -20,15 +20,17 @@ import model.Jet;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GameWindow implements Initializable {
 
     private GraphicsContext gc;
     private Scene scene;
-    private EnemyJet enemigo;
+    private ArrayList<EnemyJet> listaEnemigos = new ArrayList<>();
     private Jet jetPlayer;
     private Stage stage;
+    private int temporizadorAumento=0;
 
     @FXML
     ImageView background;
@@ -39,39 +41,60 @@ public class GameWindow implements Initializable {
     @FXML
     AnchorPane anchor0;
 
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0017), new EventHandler<>() {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0025), new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
-            enemigo.clear(gc);
-            enemigo.move();
-            System.out.println("x: "+jetPlayer.getPosX()+" y: "+ jetPlayer.getPosY());
-            background.setLayoutY(background.getLayoutY()+0.2);
-            if (jetPlayer.getBoundary().intersects(enemigo.getBoundary())) {
-                enemigo.setY(0);
-                if (jetPlayer.comprobarVida() !=0){
-                    jetPlayer.golpeado();
-                }else {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameOverWindow.fxml"));
-                    AnchorPane gameOverPane = null;
-                    try {
-                         gameOverPane = loader.load();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    jetPlayer.clear(gc);
-                    enemigo.clear(gc);
-                    anchor0.getChildren().remove(background);
-                    anchor0.getChildren().remove(playerJet);
-                    anchor0.getChildren().add(gameOverPane);
-                    GameOverWindow gameOverWindow = loader.getController();
-                    gameOverWindow.setStage(stage);
-                    gameOverWindow.cambiarDimensiones();
+            for (EnemyJet enemigo : listaEnemigos){
+                enemigo.clear(gc);
+                enemigo.move();
+                System.out.println("x: "+jetPlayer.getPosX()+" y: "+ jetPlayer.getPosY());
+                background.setLayoutY(background.getLayoutY()+0.1);
 
+                if (enemigo.getPosY() > stage.getHeight()){
+                    listaEnemigos.remove(enemigo);
+                    enemigo.clear(gc);
+                    listaEnemigos.add(new EnemyJet());
                 }
 
-                enemigo.setY(150);
+                if (jetPlayer.getBoundary().intersects(enemigo.getBoundary())) {
+                    if (jetPlayer.comprobarVida() !=0){
+                        jetPlayer.golpeado();
+                    }else {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameOverWindow.fxml"));
+                        AnchorPane gameOverPane = null;
+                        try {
+                            gameOverPane = loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        jetPlayer.clear(gc);
+                        enemigo.clear(gc);
+                        anchor0.getChildren().remove(background);
+                        anchor0.getChildren().remove(playerJet);
+                        anchor0.getChildren().add(gameOverPane);
+                        GameOverWindow gameOverWindow = loader.getController();
+                        gameOverWindow.setStage(stage);
+                        gameOverWindow.cambiarDimensiones();
+
+                    }
+
+                    listaEnemigos.remove(enemigo);
+                }
+
+                enemigo.render(gc);
             }
-            enemigo.render(gc);
+            if (background.getLayoutY() > 1){
+                background.setLayoutY(-background.getImage().getHeight()+640);
+            }
+            System.out.println("y: "+background.getLayoutY());
+            if (temporizadorAumento==5000){
+                for (int i = 0; i < 10; i++) {
+                    listaEnemigos.add(new EnemyJet());
+                }
+                temporizadorAumento=0;
+            }else {
+                temporizadorAumento++;
+            }
 
         }
     })
@@ -85,7 +108,9 @@ public class GameWindow implements Initializable {
         jetPlayer.setX(210.0);
         jetPlayer.setY(620.0);
         background.setLayoutY(-background.getImage().getHeight()+640);
-        enemigo = new EnemyJet(new Image("fxml/sprites/jets/enemigo1.png"));
+        for (int i = 0; i < 10; i++) {
+            listaEnemigos.add(new EnemyJet());
+        }
         gc = playerJet.getGraphicsContext2D();
         jetPlayer.render(gc);
 
@@ -101,7 +126,6 @@ public class GameWindow implements Initializable {
     public void setScene(Scene sc) {
         scene = sc;
 
-        System.out.println("me muevo papi");
         scene.setOnKeyPressed(keyEvent -> {
             jetPlayer.clear(gc);
             jetPlayer.move(keyEvent.getCode().toString());

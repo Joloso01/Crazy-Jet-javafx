@@ -20,6 +20,8 @@ public abstract class Sprite {
     public Sprite(Image image) {
         setImage(image);
     }
+    public Sprite(){
+    }
 
     public void setX(double x) {
         posX = x;
