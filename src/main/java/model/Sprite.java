@@ -40,7 +40,7 @@ public abstract class Sprite {
         return height;
     }
 
-    private void setImage(Image image) {
+    public void setImage(Image image) {
         this.image = image;
         width = image.getWidth();
         height = image.getHeight();
