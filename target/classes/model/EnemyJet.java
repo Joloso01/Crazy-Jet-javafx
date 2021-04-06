@@ -11,10 +11,11 @@ public class EnemyJet extends Sprite{
     public EnemyJet() {
         setX(Math.random()*400);
         setY(getHeight()-600);
-        this.velX = Math.random()*0.5f;
-        this.velY = Math.random()*0.5f;
+        this.velX = (Math.random()*0.5f)+0.2;
+        this.velY = (Math.random()*0.5f)+0.2;
         tipoEnemigo = (int) (Math.random()*3);
         setImage(new Image(spritesEnemigo[tipoEnemigo]));
+
     }
 
     @Override
