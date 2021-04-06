@@ -22,7 +22,11 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
+    Estadisticas estadisticas = new Estadisticas();
 
+    private final String s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
+    private final Media sound = new Media(s);
+    private final MediaPlayer audioClip = new MediaPlayer(sound);
 
 
     @FXML
