@@ -3,20 +3,38 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import model.Jugador;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class MainWindow {
+public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
+    Estadisticas estadisticas = new Estadisticas();
+
+    private final String s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
+    private final Media sound = new Media(s);
+    private final MediaPlayer audioClip = new MediaPlayer(sound);
+
 
     @FXML
     private Button play, score, salir;
+    @FXML
+    private AnchorPane pane1, pane2;
+    @FXML
+    private VBox vbox1;
 
     public void setStage(Stage primaryStage) {
         stage = primaryStage;
@@ -24,18 +42,21 @@ public class MainWindow {
 
     public void setScene(Scene scene) {
         this.scene = scene;
+
     }
 
-    public void jugar() throws IOException {
+    public void jugar() {
+        vbox1.getChildren().remove(pane1);
         try{
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
-            Parent root = loader.load();
-            stage = new Stage();
-            scene = new Scene(root);
-            stage.setScene(scene);
-
-            stage.show();
-
+            AnchorPane ancho = loader.load();
+            GameWindow gameWindow = loader.getController();
+            gameWindow.setScene(scene);
+            gameWindow.setStage(stage);
+            gameWindow.cambiarDimension();
+            vbox1.getChildren().add(ancho);
+            audioClip.play();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -43,10 +64,54 @@ public class MainWindow {
     }
 
     public void showScore(ActionEvent actionEvent) {
+        TableView<Jugador> puntuacionesLista = null;
+
+        try {
+            puntuacionesLista = FXMLLoader.load(getClass().getResource("fxml/estadisticas.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage2 = new Stage();
+        stage2.setTitle("Puntuacion de los jugadores");
+        stage2.setScene(new Scene(puntuacionesLista));
+        stage2.show();
+
+        puntuacionesLista.getItems().clear();
+        puntuacionesLista.getColumns().clear();
+
+        puntuacionesLista.getColumns().addAll(estadisticas.jugador,
+                estadisticas.puntos,
+                estadisticas.tiempo,
+                estadisticas.fecha);
+
+        puntuacionesLista.getItems().addAll(estadisticas.getPuntuacionesLista());
 
     }
 
     public void exitGame(ActionEvent actionEvent) {
         stage.close();
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        String cancion = new File("src/java/fxml/song.mp3").getAbsolutePath();
+//        media = new Media(new File(cancion).toURI().toString());
+//        mediaPlayer = new MediaPlayer(media);
+//        mediaPlayer.setAutoPlay(true);
+        audioClip.setVolume(0.1);
+        audioClip.setCycleCount(MediaPlayer.INDEFINITE);
+
+    }
+
+    public void menuItemCloseAction(ActionEvent actionEvent) {
+        stage.close();
+    }
+
+    public void paraMusica(){
+        audioClip.stop();
+        audioClip.pause();
+        audioClip.setVolume(0.0);
+    }
+
 }
