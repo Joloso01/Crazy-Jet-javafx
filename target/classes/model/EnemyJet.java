@@ -3,6 +3,7 @@ package model;
 import javafx.scene.image.Image;
 
 public class EnemyJet extends Sprite{
+    private boolean isDead=false ;
     private double velX, velY;
     private int dirX, dirY;
     private int tipoEnemigo;
@@ -11,10 +12,11 @@ public class EnemyJet extends Sprite{
     public EnemyJet() {
         setX(Math.random()*400);
         setY(getHeight()-600);
-        this.velX = Math.random()*0.5f;
-        this.velY = Math.random()*0.5f;
+        this.velX = (Math.random()*0.5f)+0.2;
+        this.velY = (Math.random()*0.5f)+0.2;
         tipoEnemigo = (int) (Math.random()*3);
         setImage(new Image(spritesEnemigo[tipoEnemigo]));
+
     }
 
     @Override
@@ -25,5 +27,13 @@ public class EnemyJet extends Sprite{
             setY(getPosY() + velY);
         }
 
+    }
+
+    public void muerto(){
+        isDead=true;
+    }
+
+    public boolean getIsDead() {
+        return isDead;
     }
 }

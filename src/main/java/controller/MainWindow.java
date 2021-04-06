@@ -22,11 +22,7 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
-    Estadisticas estadisticas = new Estadisticas();
 
-    private final String s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
-    private final Media sound = new Media(s);
-    private final MediaPlayer audioClip = new MediaPlayer(sound);
 
 
     @FXML
@@ -35,6 +31,10 @@ public class MainWindow implements Initializable {
     private AnchorPane pane1, pane2;
     @FXML
     private VBox vbox1;
+    private Estadisticas estadisticas;
+    private String s;
+    private Media sound;
+    private MediaPlayer audioClip;
 
     public void setStage(Stage primaryStage) {
         stage = primaryStage;
@@ -48,7 +48,7 @@ public class MainWindow implements Initializable {
     public void jugar() {
         vbox1.getChildren().remove(pane1);
         try{
-
+            System.out.println("w: "+stage.getWidth()+ " h: "+stage.getHeight());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
             AnchorPane ancho = loader.load();
             GameWindow gameWindow = loader.getController();
@@ -67,7 +67,7 @@ public class MainWindow implements Initializable {
         TableView<Jugador> puntuacionesLista = null;
 
         try {
-            puntuacionesLista = FXMLLoader.load(getClass().getResource("fxml/estadisticas.fxml"));
+            puntuacionesLista = FXMLLoader.load(getClass().getResource("/fxml/estadisticas.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,12 +95,14 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        String cancion = new File("src/java/fxml/song.mp3").getAbsolutePath();
-//        media = new Media(new File(cancion).toURI().toString());
-//        mediaPlayer = new MediaPlayer(media);
-//        mediaPlayer.setAutoPlay(true);
+        estadisticas = new Estadisticas();
+
+         s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
+         sound = new Media(s);
+         audioClip = new MediaPlayer(sound);
         audioClip.setVolume(0.1);
         audioClip.setCycleCount(MediaPlayer.INDEFINITE);
+
 
     }
 
@@ -108,7 +110,7 @@ public class MainWindow implements Initializable {
         stage.close();
     }
 
-    public void paraMusica(){
+    public void pararMusica(){
         audioClip.stop();
         audioClip.pause();
         audioClip.setVolume(0.0);

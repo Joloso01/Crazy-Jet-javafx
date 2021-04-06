@@ -20,7 +20,11 @@ public abstract class Sprite {
     public Sprite(Image image) {
         setImage(image);
     }
-    public Sprite(){
+    public Sprite(){}
+    public Sprite(Image image,float x, float y){
+        setImage(image);
+        setX(x);
+        setY(y);
     }
 
     public void setX(double x) {

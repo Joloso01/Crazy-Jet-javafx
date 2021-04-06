@@ -45,7 +45,7 @@ public class GameOverWindow {
     }
 
     public void cambiarDimensiones(){
-        st.setHeight(400f);
+        st.setHeight(446f);
         st.setWidth(600f);
     }
 }

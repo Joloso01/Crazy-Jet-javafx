@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class Estadisticas {
-    private String playerName;
 
+    private String playerName;
     private TableView<Jugador> jugadorTableView= null;
     private ObservableList<Jugador> puntuacionesLista;
     private boolean encontrado;
@@ -25,7 +25,7 @@ public class Estadisticas {
 
     public Estadisticas() {
         try {
-            jugadorTableView = FXMLLoader.load(getClass().getResource("fxml/estadisticas.fxml"));
+            jugadorTableView = FXMLLoader.load(getClass().getResource("/fxml/estadisticas.fxml"));
             puntuacionesLista = jugadorTableView.getItems();
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,7 +53,6 @@ public class Estadisticas {
     }
 
     public void finPartida(String nombre){
-        //el metodo busca al jugador, si no lo encuentra crea uno nuevo, le suma la victoria y la partida jugada al total
         Jugador jugador= buscarJugador(nombre);
         if (encontrado){
             jugador.setFecha(String.valueOf(LocalDateTime.now()));
@@ -62,11 +61,9 @@ public class Estadisticas {
             jugador = buscarJugador(nombre);
             if (encontrado){
                 jugador.setFecha(String.valueOf(LocalDateTime.now()));
-
             }
         }
 
-        //elimina el nombre de la variable player1Name para evitar duplicados y errores con el nombre en la clase MainWindow
         if (nombre.equals(playerName)){
             playerName="";
         }
