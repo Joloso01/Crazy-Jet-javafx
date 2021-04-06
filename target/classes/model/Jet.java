@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 public class Jet extends Sprite {
 
+    public boolean haDisparado=false;
     private int vida =3;
     private String spriteMovimiento_derecha="fxml/sprites/jets/playerJet_derecha.png";
     private String spriteMovimiento_izquierda="fxml/sprites/jets/playerJet_izquierda.png";
@@ -42,6 +43,10 @@ public class Jet extends Sprite {
                     setY(getPosY()+10);
                     setImage(new Image(spriteMovimiento_recto));
                 }
+                break;
+
+            case "SPACE":
+                haDisparado = true;
                 break;
 
             default:

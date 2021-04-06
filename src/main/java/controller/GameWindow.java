@@ -16,12 +16,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Bala;
 import model.EnemyJet;
 import model.Jet;
+import model.Sprite;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class GameWindow implements Initializable {
@@ -29,6 +32,7 @@ public class GameWindow implements Initializable {
     private GraphicsContext gc;
     private Scene scene;
     private ArrayList<EnemyJet> listaEnemigos = new ArrayList<>();
+    private ArrayList<Bala> listaBalas = new ArrayList<>();
     private Jet jetPlayer;
     private Stage stage;
     private int temporizadorAumento=0;
@@ -42,22 +46,38 @@ public class GameWindow implements Initializable {
     @FXML
     AnchorPane anchor0;
 
-    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0017), new EventHandler<>() {
+    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.0020), new EventHandler<>() {
         @Override
         public void handle(ActionEvent event) {
+
+            if (jetPlayer.haDisparado){
+                listaBalas.add(new Bala(jetPlayer.getPosX(),jetPlayer.getPosY()));
+                jetPlayer.haDisparado=false;
+            }
+
+            listaEnemigos.removeIf(enemyJet -> (enemyJet.getPosY() > stage.getHeight()));
+            listaEnemigos.removeIf(enemyJet -> (jetPlayer.getBoundary().intersects(enemyJet.getBoundary())));
+
+            listaBalas.removeIf(bala -> (bala.getPosY() > stage.getHeight()));
+
+
+            for (Bala bala:listaBalas){
+                bala.clear(gc);
+                bala.update();
+                bala.render(gc);
+            }
+
             for (EnemyJet enemigo : listaEnemigos){
                 enemigo.clear(gc);
                 enemigo.move();
-
-
+                listaBalas.removeIf(bala ->());
                 if (enemigo.getPosY() > stage.getHeight()){
-                    listaEnemigos.remove(enemigo);
-                    enemigo.clear(gc);
                     listaEnemigos.add(new EnemyJet());
                 }
 
                 if (jetPlayer.getBoundary().intersects(enemigo.getBoundary())) {
                     if (jetPlayer.comprobarVida() !=1){
+                        enemigo.setY(-700);
                         jetPlayer.golpeado();
                     }else {
                         FXMLLoader loader2=new FXMLLoader(getClass().getResource("/fxml/mainWindow.fxml"));
@@ -82,8 +102,6 @@ public class GameWindow implements Initializable {
 
                         gameOver(gameOverPane,gameOverWindow);
                     }
-
-                    listaEnemigos.remove(enemigo);
                 }
 
                 enemigo.render(gc);

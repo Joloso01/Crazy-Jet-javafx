@@ -3,6 +3,7 @@ package model;
 import javafx.scene.image.Image;
 
 public class EnemyJet extends Sprite{
+    private boolean isDead=false ;
     private double velX, velY;
     private int dirX, dirY;
     private int tipoEnemigo;
@@ -26,5 +27,13 @@ public class EnemyJet extends Sprite{
             setY(getPosY() + velY);
         }
 
+    }
+
+    public void muerto(){
+        isDead=true;
+    }
+
+    public boolean getIsDead() {
+        return isDead;
     }
 }

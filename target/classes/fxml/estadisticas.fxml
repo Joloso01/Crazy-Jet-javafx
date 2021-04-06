@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Estadisticas">
-   <children>
-      <TableView layoutX="160.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columns>
-          <TableColumn prefWidth="196.0" text="Player" />
-          <TableColumn minWidth="0.0" prefWidth="121.0" text="punt." />
-            <TableColumn prefWidth="125.0" text="tiempo" />
-            <TableColumn prefWidth="157.0" text="Fecha" />
-        </columns>
-      </TableView>
-   </children>
-</AnchorPane>
+
+<TableView fx:id="jugadorTableView" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columns>
+    <TableColumn prefWidth="196.0" text="Player" />
+    <TableColumn minWidth="0.0" prefWidth="121.0" text="punt." />
+      <TableColumn prefWidth="125.0" text="tiempo" />
+      <TableColumn prefWidth="157.0" text="Fecha" />
+  </columns>
+</TableView>
