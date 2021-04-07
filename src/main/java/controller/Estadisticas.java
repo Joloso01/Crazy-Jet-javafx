@@ -8,7 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Jugador;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 public class Estadisticas {
 
@@ -42,31 +41,18 @@ public class Estadisticas {
 
     }
 
-    public void sumarTiempo(String nombre){
-        Jugador jugador = buscarJugador(nombre);
-        jugador.setTiempo(jugador.getTiempo()+1);
-    }
-
-    public void sumarPuntos(String nombre){
-        Jugador jugador = buscarJugador(nombre);
-        jugador.setPuntuacion(jugador.getPuntuacion()+1);
-    }
-
-    public void finPartida(String nombre){
+    public void statsJugador(String nombre, int tiempo, int puntos){
         Jugador jugador= buscarJugador(nombre);
         if (encontrado){
-            jugador.setFecha(String.valueOf(LocalDateTime.now()));
+            jugador.setPuntuacion(puntos);
+            jugador.setTiempo(tiempo);
         }else {
             addJugador(nombre);
-            jugador = buscarJugador(nombre);
-            if (encontrado){
-                jugador.setFecha(String.valueOf(LocalDateTime.now()));
-            }
+            Jugador jugador1 = buscarJugador(nombre);
+            jugador1.setTiempo(tiempo);
+            jugador1.setPuntuacion(puntos);
         }
 
-        if (nombre.equals(playerName)){
-            playerName="";
-        }
     }
 
     public Jugador buscarJugador(String nombre){

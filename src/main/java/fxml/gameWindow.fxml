@@ -24,7 +24,7 @@
                   <VBox  fx:id="box1" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Tiempo" />
-                        <Label fx:id="tiempoPartida" text="00:00" />
+                        <Label fx:id="tiempoPartida" text="0s" />
                      </children>
                   </VBox>
                   <VBox fx:id="box2" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">

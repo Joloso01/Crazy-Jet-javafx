@@ -3,7 +3,6 @@ package model;
 import javafx.scene.image.Image;
 
 public class EnemyJet extends Sprite{
-    private boolean isDead=false ;
     private double velX, velY;
     private int tipoEnemigo;
     private String[] spritesEnemigo = {"fxml/sprites/jets/enemigo1.png","fxml/sprites/jets/enemigo2.png","fxml/sprites/jets/enemigo3.png","fxml/sprites/jets/enemigo4.png"};
@@ -28,11 +27,4 @@ public class EnemyJet extends Sprite{
 
     }
 
-    public void muerto(){
-        isDead=true;
-    }
-
-    public boolean getIsDead() {
-        return isDead;
-    }
 }

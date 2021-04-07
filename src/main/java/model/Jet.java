@@ -19,14 +19,14 @@ public class Jet extends Sprite {
         switch (direction) {
             case "RIGHT":
                 if (getPosX() <420){
-                    setX(getPosX() + 10);
+                    setX(getPosX() + 13);
                     setImage(new Image(spriteMovimiento_derecha));
                 }
 
                 break;
             case "LEFT":
                 if (getPosX() > 1){
-                    setX(getPosX() - 10);
+                    setX(getPosX() - 13);
                     setImage(new Image(spriteMovimiento_izquierda));
                 }
 

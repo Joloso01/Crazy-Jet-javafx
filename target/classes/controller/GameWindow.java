@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -22,10 +23,12 @@ import javafx.util.Duration;
 import model.Bala;
 import model.EnemyJet;
 import model.Jet;
+import model.Jugador;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GameWindow implements Initializable {
@@ -33,11 +36,14 @@ public class GameWindow implements Initializable {
     private GraphicsContext gc;
     private Scene scene;
 
+    private Jugador jugador;
+    private Estadisticas estadisticas = new Estadisticas();
     private ArrayList<EnemyJet> listaEnemigos = new ArrayList<>();
     private ArrayList<Bala> listaBalas = new ArrayList<>();
     private Jet jetPlayer;
     private Stage stage;
     private int puntosJugador;
+    private int tiempoJugador;
 
     private String s;
     private Media sound;
@@ -67,8 +73,6 @@ public class GameWindow implements Initializable {
                 jetPlayer.haDisparado=false;
             }
 
-
-
             for (Bala bala:listaBalas){
                 bala.clear(gc);
                 bala.update();
@@ -82,8 +86,6 @@ public class GameWindow implements Initializable {
                         listaBalas.remove(bala);
                         puntosJugador+=100;
                     }
-
-
                 }
 
                 bala.render(gc);
@@ -142,6 +144,15 @@ public class GameWindow implements Initializable {
     })
     );
 
+    Timeline contador = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<>(){
+
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            tiempoJugador++;
+            tiempoPartida.setText(tiempoJugador + "s");
+        }
+    }));
+
 
     private void gameOver(AnchorPane gameOverPane, GameOverWindow gameOverWindow) {
         jetPlayer.clear(gc);
@@ -150,12 +161,16 @@ public class GameWindow implements Initializable {
         anchor0.getChildren().remove(0);
         anchor0.getChildren().add(gameOverPane);
         gameOverWindow.setStage(stage);
+        gameOverWindow.setPuntuacion(puntosJugador);
         gameOverWindow.cambiarDimensiones();
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
         s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
         sound = new Media(s);
         audioClip = new MediaPlayer(sound);
@@ -175,8 +190,19 @@ public class GameWindow implements Initializable {
         }
         jetPlayer.render(gc);
 
+        TextInputDialog dialog = new TextInputDialog("jugador1");
+        dialog.setTitle("Nueva partida");
+        dialog.setHeaderText("Introduzca su nombre");
+        dialog.setContentText("nombre:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(s -> estadisticas.setPlayerName(s));
+        jugador = new Jugador(result.get());
+
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        contador.setCycleCount(Timeline.INDEFINITE);
+        contador.play();
     }
 
     public void cambiarDimension(){
