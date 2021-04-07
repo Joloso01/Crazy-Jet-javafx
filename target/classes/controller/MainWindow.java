@@ -9,8 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import model.Jugador;
 
@@ -22,11 +20,7 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
-    Estadisticas estadisticas = new Estadisticas();
 
-    private final String s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
-    private final Media sound = new Media(s);
-    private final MediaPlayer audioClip = new MediaPlayer(sound);
 
 
     @FXML
@@ -36,9 +30,6 @@ public class MainWindow implements Initializable {
     @FXML
     private VBox vbox1;
     private Estadisticas estadisticas;
-    private String s;
-    private Media sound;
-    private MediaPlayer audioClip;
 
     public void setStage(Stage primaryStage) {
         stage = primaryStage;
@@ -58,9 +49,9 @@ public class MainWindow implements Initializable {
             GameWindow gameWindow = loader.getController();
             gameWindow.setScene(scene);
             gameWindow.setStage(stage);
+            gameWindow.ponerEstilo();
             gameWindow.cambiarDimension();
             vbox1.getChildren().add(ancho);
-            audioClip.play();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -101,23 +92,10 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         estadisticas = new Estadisticas();
 
-         s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
-         sound = new Media(s);
-         audioClip = new MediaPlayer(sound);
-        audioClip.setVolume(0.1);
-        audioClip.setCycleCount(MediaPlayer.INDEFINITE);
-
-
     }
 
     public void menuItemCloseAction(ActionEvent actionEvent) {
         stage.close();
-    }
-
-    public void pararMusica(){
-        audioClip.stop();
-        audioClip.pause();
-        audioClip.setVolume(0.0);
     }
 
 }

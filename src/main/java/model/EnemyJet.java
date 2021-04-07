@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 public class EnemyJet extends Sprite{
     private boolean isDead=false ;
     private double velX, velY;
-    private int dirX, dirY;
     private int tipoEnemigo;
     private String[] spritesEnemigo = {"fxml/sprites/jets/enemigo1.png","fxml/sprites/jets/enemigo2.png","fxml/sprites/jets/enemigo3.png","fxml/sprites/jets/enemigo4.png"};
 

@@ -11,11 +11,11 @@ public class Bala extends Sprite{
     public Bala(double x, double y) {
         setImage(new Image(imagen));
         setX(x);
-        setY(y+20);
+        setY(y);
     }
 
     public void update(){
-        setY(getPosY()+15);
+        setY(getPosY()-0.1);
     }
 
 
