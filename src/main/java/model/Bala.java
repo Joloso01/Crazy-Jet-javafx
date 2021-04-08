@@ -15,7 +15,7 @@ public class Bala extends Sprite{
     }
 
     public void update(){
-        setY(getPosY()-0.2);
+        setY(getPosY()-0.3);
     }
 
 

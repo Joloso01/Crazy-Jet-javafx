@@ -40,6 +40,8 @@ public class GameWindow implements Initializable {
     private Estadisticas estadisticas = new Estadisticas();
     private ArrayList<EnemyJet> listaEnemigos = new ArrayList<>();
     private ArrayList<Bala> listaBalas = new ArrayList<>();
+    private Optional<String> result;
+
     private Jet jetPlayer;
     private Stage stage;
     private int puntosJugador;
@@ -50,7 +52,6 @@ public class GameWindow implements Initializable {
     private MediaPlayer audioClip;
 
     private int temporizadorAumento=0;
-    Font font;
 
     @FXML
     ImageView background;
@@ -154,15 +155,22 @@ public class GameWindow implements Initializable {
     }));
 
 
+
     private void gameOver(AnchorPane gameOverPane, GameOverWindow gameOverWindow) {
         jetPlayer.clear(gc);
         listaEnemigos.clear();
+        timeline.stop();
+        contador.stop();
+
+        gc=null;
 
         anchor0.getChildren().remove(0);
         anchor0.getChildren().add(gameOverPane);
         gameOverWindow.setStage(stage);
+        gameOverWindow.setScene(scene);
         gameOverWindow.setPuntuacion(puntosJugador);
         gameOverWindow.cambiarDimensiones();
+        estadisticas.statsJugador(result.get(), tiempoJugador, puntosJugador);
     }
 
 
@@ -195,7 +203,7 @@ public class GameWindow implements Initializable {
         dialog.setHeaderText("Introduzca su nombre");
         dialog.setContentText("nombre:");
 
-        Optional<String> result = dialog.showAndWait();
+        result = dialog.showAndWait();
         result.ifPresent(s -> estadisticas.setPlayerName(s));
         jugador = new Jugador(result.get());
 
@@ -214,6 +222,7 @@ public class GameWindow implements Initializable {
         scene = sc;
 
         scene.setOnKeyPressed(keyEvent -> {
+            System.out.println("rgsoidrs");
             jetPlayer.clear(gc);
             jetPlayer.move(keyEvent.getCode().toString());
             jetPlayer.render(gc);
