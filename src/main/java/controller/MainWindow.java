@@ -16,32 +16,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
-
-
+    private Estadisticas estadisticas = new Estadisticas();
 
     @FXML
-    private Button play, score, salir;
-    @FXML
-    private AnchorPane pane1, pane2;
-    @FXML
-    private VBox vbox1;
-    private Estadisticas estadisticas;
+    private AnchorPane pane1;
 
     public void setStage(Stage primaryStage) {
         stage = primaryStage;
     }
 
-    public void setScene(Scene scene) {
-        this.scene = scene;
-
-    }
+    public void setScene(Scene scene) { this.scene = scene; }
 
     public void jugar() {
-        vbox1.getChildren().remove(pane1);
+        pane1.getChildren().clear();
         try{
             System.out.println("w: "+stage.getWidth()+ " h: "+stage.getHeight());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
@@ -51,7 +41,7 @@ public class MainWindow implements Initializable {
             gameWindow.setStage(stage);
             gameWindow.ponerEstilo();
             gameWindow.cambiarDimension();
-            vbox1.getChildren().add(ancho);
+            pane1.getChildren().add(ancho);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -90,12 +80,12 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        estadisticas = new Estadisticas();
-
     }
 
-    public void menuItemCloseAction(ActionEvent actionEvent) {
-        stage.close();
-    }
+//    public void cambiarDimensiones(){
+//        stage.setHeight(600f);
+//        stage.setWidth(420f);
+//    }
+
 
 }

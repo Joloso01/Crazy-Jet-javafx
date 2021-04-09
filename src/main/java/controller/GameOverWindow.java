@@ -41,14 +41,13 @@ public class GameOverWindow implements Initializable {
         gameWindow.setScene(scene);
         gameWindow.setStage(st);
         gameWindow.ponerEstilo();
-        gameWindow.cambiarDimension();
         anchor0.getChildren().clear();
         anchor0.getChildren().add(ancho);
     }
 
     public void volverMenu(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWindow.fxml"));
-        VBox root = null;
+        Parent root = null;
         try {
             root=loader.load();
         } catch (IOException e) {
@@ -56,9 +55,11 @@ public class GameOverWindow implements Initializable {
         }
         MainWindow mainWindow = loader.getController();
         anchor0.getChildren().clear();
-        anchor0.getChildren().add(root.getChildren().get(1));
+        anchor0.getChildren().add(root);
         mainWindow.setScene(scene);
         mainWindow.setStage(st);
+//        mainWindow.cambiarDimensiones();
+
     }
 
     public void setStage(Stage stage) {
@@ -74,8 +75,7 @@ public class GameOverWindow implements Initializable {
     }
 
     public void cambiarDimensiones(){
-        st.setHeight(446f);
-        st.setWidth(600f);
+
     }
 
     @Override

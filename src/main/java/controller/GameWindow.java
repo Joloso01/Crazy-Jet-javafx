@@ -162,10 +162,14 @@ public class GameWindow implements Initializable {
         timeline.stop();
         contador.stop();
 
-        gc=null;
-
         anchor0.getChildren().remove(0);
         anchor0.getChildren().add(gameOverPane);
+        anchor0.getParent().prefWidth(600f);
+        anchor0.getParent().prefHeight(400);
+        anchor0.getChildren().remove(0);
+        anchor0.getChildren().remove(0);
+        System.out.println(anchor0.getChildren());
+
         gameOverWindow.setStage(stage);
         gameOverWindow.setScene(scene);
         gameOverWindow.setPuntuacion(puntosJugador);
@@ -214,8 +218,14 @@ public class GameWindow implements Initializable {
     }
 
     public void cambiarDimension(){
-        stage.setWidth(450f);
-        stage.setHeight(700f);
+        if ( jetPlayer.comprobarVida() != 0){
+            stage.setWidth(450f);
+            stage.setHeight(700f);
+        }else {
+            stage.setWidth(600f);
+            stage.setHeight(420f);
+        }
+
     }
 
     public void setScene(Scene sc) {

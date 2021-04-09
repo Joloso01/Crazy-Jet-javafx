@@ -26,6 +26,7 @@ public class Main extends Application {
         mainWindow.setStage(primaryStage);
         mainWindow.setScene(scene);
         scene.getStylesheets().add("css/temaMainMenu.css");
+        System.out.println(primaryStage.getHeight() + " : "+primaryStage.getWidth());
 
         primaryStage.setResizable(true);
 
