@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +40,7 @@ public class GameOverWindow implements Initializable {
         gameWindow.setScene(scene);
         gameWindow.setStage(st);
         gameWindow.ponerEstilo();
+        gameWindow.cambiarDimension();
         anchor0.getChildren().clear();
         anchor0.getChildren().add(ancho);
     }

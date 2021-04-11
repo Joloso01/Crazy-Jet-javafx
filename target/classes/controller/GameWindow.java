@@ -17,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Bala;
@@ -162,10 +161,26 @@ public class GameWindow implements Initializable {
         timeline.stop();
         contador.stop();
 
-        gc=null;
-
         anchor0.getChildren().remove(0);
         anchor0.getChildren().add(gameOverPane);
+
+//        playerJet.prefWidth(600);
+//        playerJet.prefHeight(400);
+//        background.setFitHeight(400);
+//        background.setFitWidth(600);
+
+        anchor0.getChildren().remove(0);
+        anchor0.getChildren().remove(0);
+        anchor0.getParent().prefWidth(600f);
+        anchor0.setMaxWidth(420);
+        anchor0.setMaxHeight(600);
+        stage.setWidth(600f);
+        stage.setHeight(420f);
+
+
+        System.out.println(anchor0.getChildren());
+// cambiar el anchor el canvas y la imagen de fondo
+
         gameOverWindow.setStage(stage);
         gameOverWindow.setScene(scene);
         gameOverWindow.setPuntuacion(puntosJugador);
@@ -214,8 +229,18 @@ public class GameWindow implements Initializable {
     }
 
     public void cambiarDimension(){
-        stage.setWidth(450f);
-        stage.setHeight(700f);
+        if ( jetPlayer.comprobarVida() != 0){
+            stage.setWidth(450f);
+            stage.setHeight(700f);
+            anchor0.setMaxWidth(450);
+            anchor0.setMaxHeight(711);
+        }else {
+            stage.setWidth(600f);
+            stage.setHeight(420f);
+            anchor0.setMaxWidth(420);
+            anchor0.setMaxHeight(600);
+        }
+
     }
 
     public void setScene(Scene sc) {
