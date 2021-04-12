@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Jugador;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Estadisticas {
 
@@ -17,10 +18,10 @@ public class Estadisticas {
     private boolean encontrado;
 
 
-    TableColumn<Jugador, String> jugador = new TableColumn<Jugador, String>("Player");
-    TableColumn<Jugador, Integer> puntos = new TableColumn<>("punt.");
+    TableColumn<Jugador, String> jugador = new TableColumn<Jugador, String>("nom");
+    TableColumn<Jugador, Integer> puntos = new TableColumn<>("puntuacion");
     TableColumn<Jugador, Integer> tiempo = new TableColumn<Jugador, Integer>("tiempo");
-    TableColumn<Jugador, String > fecha = new TableColumn<>("Fecha");
+    TableColumn<Jugador, String > fecha = new TableColumn<>("fecha");
 
     public Estadisticas() {
         try {
@@ -30,10 +31,10 @@ public class Estadisticas {
             e.printStackTrace();
         }
 
-        jugador.setCellValueFactory(new PropertyValueFactory<>("Player"));
-        puntos.setCellValueFactory(new PropertyValueFactory<>("punt."));
+        jugador.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        puntos.setCellValueFactory(new PropertyValueFactory<>("puntuacion"));
         tiempo.setCellValueFactory(new PropertyValueFactory<>("tiempo"));
-        fecha.setCellValueFactory(new PropertyValueFactory<>("Fecha"));
+        fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
     }
 
     public void addJugador(String nombre){
@@ -46,12 +47,15 @@ public class Estadisticas {
         if (encontrado){
             jugador.setPuntuacion(puntos);
             jugador.setTiempo(tiempo);
+            jugador.setFecha(LocalDate.now().toString());
         }else {
             addJugador(nombre);
             Jugador jugador1 = buscarJugador(nombre);
             jugador1.setTiempo(tiempo);
             jugador1.setPuntuacion(puntos);
+            jugador.setFecha(LocalDate.now().toString());
         }
+        playerName="";
 
     }
 

@@ -26,9 +26,9 @@ import model.Jugador;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 public class GameWindow implements Initializable {
 
@@ -36,7 +36,10 @@ public class GameWindow implements Initializable {
     private Scene scene;
 
     private Jugador jugador;
-    private Estadisticas estadisticas = new Estadisticas();
+    private Estadisticas estadisticas;
+    public void setEstadisticas(Estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
+    }
     private ArrayList<EnemyJet> listaEnemigos = new ArrayList<>();
     private ArrayList<Bala> listaBalas = new ArrayList<>();
     private Optional<String> result;
@@ -164,11 +167,6 @@ public class GameWindow implements Initializable {
         anchor0.getChildren().remove(0);
         anchor0.getChildren().add(gameOverPane);
 
-//        playerJet.prefWidth(600);
-//        playerJet.prefHeight(400);
-//        background.setFitHeight(400);
-//        background.setFitWidth(600);
-
         anchor0.getChildren().remove(0);
         anchor0.getChildren().remove(0);
         anchor0.getParent().prefWidth(600f);
@@ -184,8 +182,9 @@ public class GameWindow implements Initializable {
         gameOverWindow.setStage(stage);
         gameOverWindow.setScene(scene);
         gameOverWindow.setPuntuacion(puntosJugador);
-        gameOverWindow.cambiarDimensiones();
-        estadisticas.statsJugador(result.get(), tiempoJugador, puntosJugador);
+        result.ifPresent(s1 -> estadisticas.setPlayerName(s1));
+        estadisticas.statsJugador(estadisticas.getPlayerName(), tiempoJugador, puntosJugador);
+        gameOverWindow.setEstadisticas(estadisticas);
     }
 
 
@@ -272,5 +271,9 @@ public class GameWindow implements Initializable {
 
     public void setStage(Stage primaryStage) {
         stage = primaryStage;
+    }
+
+    public Estadisticas getEstadisticas() {
+        return estadisticas;
     }
 }

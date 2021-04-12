@@ -14,11 +14,14 @@ import model.Jugador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
+    List<Jugador> listaJugadores = new ArrayList<>();
     private Estadisticas estadisticas = new Estadisticas();
 
     @FXML
@@ -39,8 +42,10 @@ public class MainWindow implements Initializable {
             GameWindow gameWindow = loader.getController();
             gameWindow.setScene(scene);
             gameWindow.setStage(stage);
+            gameWindow.setEstadisticas(estadisticas);
             gameWindow.ponerEstilo();
             gameWindow.cambiarDimension();
+
             pane1.getChildren().add(ancho);
 
         }catch (Exception e){
@@ -70,6 +75,7 @@ public class MainWindow implements Initializable {
                 estadisticas.tiempo,
                 estadisticas.fecha);
 
+        puntuacionesLista.getItems().add(new Jugador("nombre"));
         puntuacionesLista.getItems().addAll(estadisticas.getPuntuacionesLista());
 
     }
@@ -82,7 +88,15 @@ public class MainWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
-//    public void cambiarDimensiones(){
+    public Estadisticas getEstadisticas() {
+        return estadisticas;
+    }
+
+    public void setEstadisticas(Estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
+    }
+
+    //    public void cambiarDimensiones(){
 //        stage.setHeight(600f);
 //        stage.setWidth(420f);
 //    }

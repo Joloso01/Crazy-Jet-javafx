@@ -9,9 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Jugador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class GameOverWindow implements Initializable {
@@ -26,6 +28,7 @@ public class GameOverWindow implements Initializable {
     private Stage st;
     private Scene scene;
     private int puntuacion;
+    private Estadisticas estadisticas= new Estadisticas();
 
 
     public void volverAjugar(ActionEvent actionEvent) {
@@ -43,6 +46,7 @@ public class GameOverWindow implements Initializable {
         gameWindow.cambiarDimension();
         anchor0.getChildren().clear();
         anchor0.getChildren().add(ancho);
+        gameWindow.setEstadisticas(estadisticas);
     }
 
     public void volverMenu(ActionEvent actionEvent) {
@@ -58,8 +62,7 @@ public class GameOverWindow implements Initializable {
         anchor0.getChildren().add(root);
         mainWindow.setScene(scene);
         mainWindow.setStage(st);
-//        mainWindow.cambiarDimensiones();
-
+        mainWindow.setEstadisticas(estadisticas);
     }
 
     public void setStage(Stage stage) {
@@ -74,8 +77,12 @@ public class GameOverWindow implements Initializable {
         puntuacion=p;
     }
 
-    public void cambiarDimensiones(){
+    public Estadisticas getEstadisticas() {
+        return estadisticas;
+    }
 
+    public void setEstadisticas(Estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
     }
 
     @Override
