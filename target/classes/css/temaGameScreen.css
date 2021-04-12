@@ -1,0 +1,36 @@
+@font-face {
+    src: url('PressStart2P.ttf');
+}
+
+#box1 {
+    -fx-background-color: #458B00;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+
+#box2 {
+    -fx-background-color: #458B00;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+
+#box3 {
+    -fx-background-color: #458B00;
+    -fx-border-radius: 10 10 10 10;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-color: white;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-font-family: 'Press Start 2P';
+}
