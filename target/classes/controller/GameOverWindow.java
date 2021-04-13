@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,6 +26,9 @@ public class GameOverWindow implements Initializable {
 
     @FXML
     Label puntuacionText;
+
+    @FXML
+    TextField usernameInput;
 
     private Stage st;
     private Scene scene;
@@ -48,7 +52,10 @@ public class GameOverWindow implements Initializable {
         gameWindow.cambiarDimension();
         anchor0.getChildren().clear();
         anchor0.getChildren().add(ancho);
+        String name = usernameInput.getText();
+        estadisticas.statsJugador(name, tiempo, puntuacion);
         gameWindow.setEstadisticas(estadisticas);
+
     }
 
     public void volverMenu(ActionEvent actionEvent) {
@@ -64,7 +71,8 @@ public class GameOverWindow implements Initializable {
         anchor0.getChildren().add(root);
         mainWindow.setScene(scene);
         mainWindow.setStage(st);
-        estadisticas.statsJugador("playerPrueba", tiempo, puntuacion);
+        String name = usernameInput.getText();
+        estadisticas.statsJugador(name, tiempo, puntuacion);
         mainWindow.setEstadisticas(estadisticas);
     }
 

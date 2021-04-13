@@ -12,22 +12,28 @@
             <Image url="@images/dead.gif" />
          </image>
       </ImageView>
-      <Label layoutX="242.0" layoutY="76.0" text="Game Over" textFill="RED">
+      <Label layoutX="224.0" layoutY="63.0" text="Game Over" textFill="RED">
          <font>
             <Font name="David CLM Bold" size="27.0" />
          </font>
       </Label>
       <Button fx:id="volverJugar" layoutX="72.0" layoutY="246.0" mnemonicParsing="false" onAction="#volverAjugar" text="Volver a jugar" />
       <Button fx:id="returnMenu" layoutX="45.0" layoutY="307.0" mnemonicParsing="false" onAction="#volverMenu" text="Volver al menu principal" />
-      <Label layoutX="178.0" layoutY="132.0" text="Puntuacion:" textFill="#00d0ff">
+      <Label layoutX="175.0" layoutY="133.0" text="Puntuacion:" textFill="#00d0ff">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="puntuacionText" layoutX="361.0" layoutY="133.0" text="ghj" textFill="#e6ff02">
+      <Label fx:id="puntuacionText" layoutX="363.0" layoutY="134.0" text="ghj" textFill="#e6ff02">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
+      <Label layoutX="166.0" layoutY="196.0" text="Player:" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="usernameInput" layoutX="270.0" layoutY="195.0" />
    </children>
 </AnchorPane>
