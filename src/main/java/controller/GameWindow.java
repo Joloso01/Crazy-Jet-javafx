@@ -2,6 +2,7 @@ package controller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -37,9 +39,7 @@ public class GameWindow implements Initializable {
 
     private Jugador jugador;
     private Estadisticas estadisticas;
-    public void setEstadisticas(Estadisticas estadisticas) {
-        this.estadisticas = estadisticas;
-    }
+
     private ArrayList<EnemyJet> listaEnemigos = new ArrayList<>();
     private ArrayList<Bala> listaBalas = new ArrayList<>();
     private Optional<String> result;
@@ -158,6 +158,8 @@ public class GameWindow implements Initializable {
 
 
 
+
+
     private void gameOver(AnchorPane gameOverPane, GameOverWindow gameOverWindow) {
         jetPlayer.clear(gc);
         listaEnemigos.clear();
@@ -177,14 +179,26 @@ public class GameWindow implements Initializable {
 
 
         System.out.println(anchor0.getChildren());
-// cambiar el anchor el canvas y la imagen de fondo
+
 
         gameOverWindow.setStage(stage);
         gameOverWindow.setScene(scene);
         gameOverWindow.setPuntuacion(puntosJugador);
-        result.ifPresent(s1 -> estadisticas.setPlayerName(s1));
-        estadisticas.statsJugador(estadisticas.getPlayerName(), tiempoJugador, puntosJugador);
+        gameOverWindow.setTiempo(tiempoJugador);
         gameOverWindow.setEstadisticas(estadisticas);
+//        timeline.setOnFinished(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent actionEvent) {
+//                Platform.runLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        gameOverWindow.partidaFinalizada();
+//                    }
+//                });
+//            }
+//        });
+
+
     }
 
 
@@ -212,14 +226,6 @@ public class GameWindow implements Initializable {
         }
         jetPlayer.render(gc);
 
-        TextInputDialog dialog = new TextInputDialog("jugador1");
-        dialog.setTitle("Nueva partida");
-        dialog.setHeaderText("Introduzca su nombre");
-        dialog.setContentText("nombre:");
-
-        result = dialog.showAndWait();
-        result.ifPresent(s -> estadisticas.setPlayerName(s));
-        jugador = new Jugador(result.get());
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -273,7 +279,12 @@ public class GameWindow implements Initializable {
         stage = primaryStage;
     }
 
+    public void setEstadisticas(Estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
+    }
+
     public Estadisticas getEstadisticas() {
         return estadisticas;
     }
+
 }

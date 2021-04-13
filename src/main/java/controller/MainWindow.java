@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Jugador;
 
@@ -21,7 +19,7 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
-    List<Jugador> listaJugadores = new ArrayList<>();
+    String nombreDelJugador;
     private Estadisticas estadisticas = new Estadisticas();
 
     @FXML

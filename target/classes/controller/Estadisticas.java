@@ -53,9 +53,8 @@ public class Estadisticas {
             Jugador jugador1 = buscarJugador(nombre);
             jugador1.setTiempo(tiempo);
             jugador1.setPuntuacion(puntos);
-            jugador.setFecha(LocalDate.now().toString());
+            jugador1.setFecha(LocalDate.now().toString());
         }
-        playerName="";
 
     }
 

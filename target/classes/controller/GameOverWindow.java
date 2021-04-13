@@ -7,13 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Jugador;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GameOverWindow implements Initializable {
@@ -28,8 +29,9 @@ public class GameOverWindow implements Initializable {
     private Stage st;
     private Scene scene;
     private int puntuacion;
+    private int tiempo;
     private Estadisticas estadisticas= new Estadisticas();
-
+    private Optional<String> result;
 
     public void volverAjugar(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
@@ -62,6 +64,7 @@ public class GameOverWindow implements Initializable {
         anchor0.getChildren().add(root);
         mainWindow.setScene(scene);
         mainWindow.setStage(st);
+        estadisticas.statsJugador("playerPrueba", tiempo, puntuacion);
         mainWindow.setEstadisticas(estadisticas);
     }
 
@@ -77,6 +80,14 @@ public class GameOverWindow implements Initializable {
         puntuacion=p;
     }
 
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
+
     public Estadisticas getEstadisticas() {
         return estadisticas;
     }
@@ -89,4 +100,17 @@ public class GameOverWindow implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         puntuacionText.setText(String.valueOf(puntuacion));
     }
+
+    public void partidaFinalizada(){
+
+        TextInputDialog dialog = new TextInputDialog("jugador1");
+        dialog.setTitle("Nueva partida");
+        dialog.setHeaderText("Introduzca su nombre");
+        dialog.setContentText("nombre:");
+
+        result = dialog.showAndWait();
+        result.ifPresent(s -> estadisticas.setPlayerName(s));
+
+    }
+
 }
