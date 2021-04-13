@@ -54,6 +54,8 @@ public class GameWindow implements Initializable {
     private MediaPlayer audioClip;
 
     private int temporizadorAumento=0;
+    private int tiempoDisparo=750;
+
 
     @FXML
     ImageView background;
@@ -71,10 +73,12 @@ public class GameWindow implements Initializable {
         @Override
         public void handle(ActionEvent event) {
 
-            if (jetPlayer.haDisparado){
+            if (jetPlayer.haDisparado && tiempoDisparo >= 750){
                 listaBalas.add(new Bala(jetPlayer.getPosX(),jetPlayer.getPosY()-50));
                 jetPlayer.haDisparado=false;
-            }
+                tiempoDisparo = 0;
+            }else jetPlayer.haDisparado=false;
+            tiempoDisparo++;
 
             for (Bala bala:listaBalas){
                 bala.clear(gc);
@@ -143,6 +147,8 @@ public class GameWindow implements Initializable {
             }
             background.setLayoutY(background.getLayoutY()+0.1);
             puntosPartida.setText(String.valueOf(puntosJugador));
+            tiempoDisparo++;
+
         }
     })
     );
@@ -186,26 +192,11 @@ public class GameWindow implements Initializable {
         gameOverWindow.setPuntuacion(puntosJugador);
         gameOverWindow.setTiempo(tiempoJugador);
         gameOverWindow.setEstadisticas(estadisticas);
-//        timeline.setOnFinished(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent actionEvent) {
-//                Platform.runLater(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        gameOverWindow.partidaFinalizada();
-//                    }
-//                });
-//            }
-//        });
-
-
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
 
         s = getClass().getClassLoader().getResource("fxml/sounds/song.mp3").toExternalForm();
         sound = new Media(s);
@@ -219,13 +210,12 @@ public class GameWindow implements Initializable {
         jetPlayer.setX(210.0);
         jetPlayer.setY(610.0);
         background.setLayoutY(-background.getImage().getHeight()+640);
+
         gc = playerJet.getGraphicsContext2D();
         for (int i = 0; i < 10; i++) {
             listaEnemigos.add(new EnemyJet());
-
         }
         jetPlayer.render(gc);
-
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -252,12 +242,9 @@ public class GameWindow implements Initializable {
         scene = sc;
 
         scene.setOnKeyPressed(keyEvent -> {
-            System.out.println("rgsoidrs");
             jetPlayer.clear(gc);
             jetPlayer.move(keyEvent.getCode().toString());
             jetPlayer.render(gc);
-            System.out.println(keyEvent.getCode().toString());
-
         });
     }
 
