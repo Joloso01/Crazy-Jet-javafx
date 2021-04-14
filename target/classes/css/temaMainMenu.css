@@ -32,6 +32,7 @@
         -fx-font-weight: bold;
         -fx-font-size: 1em;
         -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-text-fill: #ffffff;
 }
 
 .button:hover {
