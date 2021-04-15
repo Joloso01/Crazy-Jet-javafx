@@ -94,10 +94,12 @@ public class MainWindow implements Initializable {
         this.estadisticas = estadisticas;
     }
 
-    //    public void cambiarDimensiones(){
-//        stage.setHeight(600f);
-//        stage.setWidth(420f);
-//    }
+        public void cambiarDimensiones(){
+        stage.setHeight(398f);
+        stage.setWidth(600f);
+        stage.setMaxHeight(398f);
+        stage.setMaxWidth(600f);
+    }
 
 
 }

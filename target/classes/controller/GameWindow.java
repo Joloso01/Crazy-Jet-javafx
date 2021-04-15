@@ -209,7 +209,7 @@ public class GameWindow implements Initializable {
         jetPlayer = new Jet(new Image("fxml/sprites/jets/playerJet_recto.png"));
         jetPlayer.setX(210.0);
         jetPlayer.setY(610.0);
-        background.setLayoutY(-background.getImage().getHeight()+640);
+        background.setLayoutY(-background.getImage().getHeight()+665);
 
         gc = playerJet.getGraphicsContext2D();
         for (int i = 0; i < 10; i++) {
@@ -231,8 +231,8 @@ public class GameWindow implements Initializable {
             anchor0.setMaxHeight(711);
         }else {
             stage.setWidth(600f);
-            stage.setHeight(420f);
-            anchor0.setMaxWidth(420);
+            stage.setHeight(400f);
+            anchor0.setMaxWidth(400);
             anchor0.setMaxHeight(600);
         }
 

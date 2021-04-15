@@ -71,6 +71,7 @@ public class GameOverWindow implements Initializable {
         anchor0.getChildren().add(root);
         mainWindow.setScene(scene);
         mainWindow.setStage(st);
+        mainWindow.cambiarDimensiones();
         String name = usernameInput.getText();
         estadisticas.statsJugador(name, tiempo, puntuacion);
         mainWindow.setEstadisticas(estadisticas);
