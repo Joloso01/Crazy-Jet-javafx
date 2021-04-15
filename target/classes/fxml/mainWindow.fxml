@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/fondo_Intro.jpg" />
+            <Image url="@images/fondoPrueba2gif.gif" />
          </image>
       </ImageView>
       <Button fx:id="btnjugar" layoutX="255.0" layoutY="229.0" mnemonicParsing="false" onAction="#jugar" text="Jugar" />
