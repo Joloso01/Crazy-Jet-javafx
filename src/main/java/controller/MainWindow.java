@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable {
     Stage stage;
     Scene scene;
-    String nombreDelJugador;
     private Estadisticas estadisticas = new Estadisticas();
 
     @FXML
@@ -40,9 +39,9 @@ public class MainWindow implements Initializable {
             GameWindow gameWindow = loader.getController();
             gameWindow.setScene(scene);
             gameWindow.setStage(stage);
+            gameWindow.cambiarDimension();
             gameWindow.setEstadisticas(estadisticas);
             gameWindow.ponerEstilo();
-            gameWindow.cambiarDimension();
 
             pane1.getChildren().add(ancho);
 

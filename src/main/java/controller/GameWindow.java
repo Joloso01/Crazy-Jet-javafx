@@ -182,6 +182,8 @@ public class GameWindow implements Initializable {
         anchor0.setMaxHeight(600);
         stage.setWidth(600f);
         stage.setHeight(420f);
+        stage.setMaxWidth(600f);
+        stage.setMaxHeight(420f);
 
 
         System.out.println(anchor0.getChildren());
@@ -224,18 +226,12 @@ public class GameWindow implements Initializable {
     }
 
     public void cambiarDimension(){
-        if ( jetPlayer.comprobarVida() != 0){
             stage.setWidth(450f);
             stage.setHeight(700f);
-            anchor0.setMaxWidth(450);
-            anchor0.setMaxHeight(711);
-        }else {
-            stage.setWidth(600f);
-            stage.setHeight(400f);
-            anchor0.setMaxWidth(400);
-            anchor0.setMaxHeight(600);
-        }
-
+            stage.setMaxWidth(450f);
+            stage.setMaxHeight(700f);
+            anchor0.setMaxWidth(450f);
+            anchor0.setMaxHeight(711f);
     }
 
     public void setScene(Scene sc) {

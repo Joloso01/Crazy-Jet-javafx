@@ -110,16 +110,4 @@ public class GameOverWindow implements Initializable {
         puntuacionText.setText(String.valueOf(puntuacion));
     }
 
-    public void partidaFinalizada(){
-
-        TextInputDialog dialog = new TextInputDialog("jugador1");
-        dialog.setTitle("Nueva partida");
-        dialog.setHeaderText("Introduzca su nombre");
-        dialog.setContentText("nombre:");
-
-        result = dialog.showAndWait();
-        result.ifPresent(s -> estadisticas.setPlayerName(s));
-
-    }
-
 }
