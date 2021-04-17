@@ -37,6 +37,9 @@ public class GameOverWindow implements Initializable {
     private Estadisticas estadisticas= new Estadisticas();
     private Optional<String> result;
 
+    //metodo 'onClick' del boton volver a jugar.
+    //se limpia la pantalla y se añade el fxml game window
+    //se crea el registro de la partida jugada en la clase estadisticas
     public void volverAjugar(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
         AnchorPane ancho = null;
@@ -57,7 +60,9 @@ public class GameOverWindow implements Initializable {
         gameWindow.setEstadisticas(estadisticas);
 
     }
-
+    //metodo 'onClick' del boton volver al menu.
+    //quita el fxml de game over y lo cambia por el fxml de main window
+    //añade el registro de la partida a la clase estadisticas
     public void volverMenu(ActionEvent actionEvent) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/mainWindow.fxml"));
         Parent root = null;

@@ -33,7 +33,6 @@ public class MainWindow implements Initializable {
     public void jugar() {
         pane1.getChildren().clear();
         try{
-            System.out.println("w: "+stage.getWidth()+ " h: "+stage.getHeight());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
             AnchorPane ancho = loader.load();
             GameWindow gameWindow = loader.getController();
@@ -83,10 +82,6 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
-    public Estadisticas getEstadisticas() {
-        return estadisticas;
     }
 
     public void setEstadisticas(Estadisticas estadisticas) {

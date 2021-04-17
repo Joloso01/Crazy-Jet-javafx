@@ -17,7 +17,7 @@ public class Estadisticas {
     private ObservableList<Jugador> puntuacionesLista;
     private boolean encontrado;
 
-
+    //se crean las columnas de la table view
     TableColumn<Jugador, String> jugador = new TableColumn<Jugador, String>("nom");
     TableColumn<Jugador, Integer> puntos = new TableColumn<>("puntuacion");
     TableColumn<Jugador, Integer> tiempo = new TableColumn<Jugador, Integer>("tiempo");
@@ -31,17 +31,22 @@ public class Estadisticas {
             e.printStackTrace();
         }
 
+        //se inicializan los valores de las columnas creadas antes
         jugador.setCellValueFactory(new PropertyValueFactory<>("nom"));
         puntos.setCellValueFactory(new PropertyValueFactory<>("puntuacion"));
         tiempo.setCellValueFactory(new PropertyValueFactory<>("tiempo"));
         fecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
     }
 
+    //este metodo sirve para crear un nuevo jugador a la lista
     public void addJugador(String nombre){
         puntuacionesLista.add(new Jugador(nombre));
 
     }
 
+    //este metodo sirve para buscar el jugador al cual se le quiere añadir las estadisticas de la partida
+    //lo busca y le pone la puntuacion, tiempo y fecha de la partida
+    //en caso de que no lo encuentre lo crea y le añade las estadisticas
     public void statsJugador(String nombre, int tiempo, int puntos){
         Jugador jugador= buscarJugador(nombre);
         if (encontrado){
@@ -58,6 +63,7 @@ public class Estadisticas {
 
     }
 
+    //este metodo sirve para saber si el jugador a buscar esta en la lista
     public Jugador buscarJugador(String nombre){
         for (Jugador j:puntuacionesLista){
             if (j.getNom().equals(nombre)){

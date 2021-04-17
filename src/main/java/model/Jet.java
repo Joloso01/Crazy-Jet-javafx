@@ -6,9 +6,9 @@ public class Jet extends Sprite {
 
     public boolean haDisparado=false;
     private int vida =3;
-    private String spriteMovimiento_derecha="fxml/sprites/jets/playerJet_derecha.png";
-    private String spriteMovimiento_izquierda="fxml/sprites/jets/playerJet_izquierda.png";
-    private String spriteMovimiento_recto="fxml/sprites/jets/playerJet_recto.png";
+    private final String spriteMovimiento_derecha="fxml/sprites/jets/playerJet_derecha.png";
+    private final String spriteMovimiento_izquierda="fxml/sprites/jets/playerJet_izquierda.png";
+    private final String spriteMovimiento_recto="fxml/sprites/jets/playerJet_recto.png";
 
     public Jet(Image image) {
         super(image);

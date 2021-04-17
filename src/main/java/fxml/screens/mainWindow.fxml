@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/fondoPrueba2gif.gif" />
+            <Image url="@../images/fondoPrueba2gif.gif" />
          </image>
       </ImageView>
       <Button fx:id="btnjugar" layoutX="255.0" layoutY="229.0" mnemonicParsing="false" onAction="#jugar" text="Jugar" />
@@ -16,7 +16,7 @@
       <Button fx:id="exit" layoutX="256.0" layoutY="319.0" mnemonicParsing="false" onAction="#exitGame" text="Salir" />
       <ImageView fitHeight="87.0" fitWidth="325.0" layoutX="141.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/crazyJet.png" />
+            <Image url="@../images/crazyJet.png" />
          </image>
       </ImageView>
    </children>

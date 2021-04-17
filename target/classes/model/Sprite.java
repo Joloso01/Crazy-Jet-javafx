@@ -65,7 +65,6 @@ public abstract class Sprite {
     }
 
     public boolean isClicked(Point2D p) {
-        if(getBoundary().contains(p)) return true;
-        else return false;
+        return getBoundary().contains(p);
     }
 }

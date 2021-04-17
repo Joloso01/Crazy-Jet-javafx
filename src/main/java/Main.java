@@ -19,7 +19,7 @@ public class Main extends Application {
 //        mediaPlayer.setAutoPlay(true);
 //        mediaPlayer.setVolume(0.1);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/mainWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/screens/mainWindow.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         MainWindow mainWindow = loader.getController();

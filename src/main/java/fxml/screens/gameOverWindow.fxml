@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="410.0" fitWidth="602.0" layoutY="-2.0" pickOnBounds="true">
          <image>
-            <Image url="@images/dead.gif" />
+            <Image url="@../images/dead.gif" />
          </image>
       </ImageView>
       <Label layoutX="224.0" layoutY="63.0" text="Game Over" textFill="RED">

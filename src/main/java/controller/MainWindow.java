@@ -12,8 +12,6 @@ import model.Jugador;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable {
@@ -33,8 +31,7 @@ public class MainWindow implements Initializable {
     public void jugar() {
         pane1.getChildren().clear();
         try{
-            System.out.println("w: "+stage.getWidth()+ " h: "+stage.getHeight());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/gameWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/screens/gameWindow.fxml"));
             AnchorPane ancho = loader.load();
             GameWindow gameWindow = loader.getController();
             gameWindow.setScene(scene);
@@ -54,7 +51,7 @@ public class MainWindow implements Initializable {
         TableView<Jugador> puntuacionesLista = null;
 
         try {
-            puntuacionesLista = FXMLLoader.load(getClass().getResource("/fxml/estadisticas.fxml"));
+            puntuacionesLista = FXMLLoader.load(getClass().getResource("/fxml/screens/estadisticas.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,10 +80,6 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
-    public Estadisticas getEstadisticas() {
-        return estadisticas;
     }
 
     public void setEstadisticas(Estadisticas estadisticas) {
